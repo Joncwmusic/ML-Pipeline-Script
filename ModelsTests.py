@@ -69,15 +69,20 @@ axs[1,1].set_title('Linear Test Data 2D')
 
 
 
-Summary = perform_svm(X_train_linear_1D.reshape(-1, 1), y_train_linear_1D, X_test_linear_1D.reshape(-1, 1), y_test_linear_1D, max_iter=100)
-print(Summary)
-print(Summary[0])
-evaluation_figure, eval_axs = plt.subplots(3, 1)
-eval_axs[0].plot(Summary[0], Summary[1])
-eval_axs[1].plot(Summary[0], Summary[2])
-eval_axs[2].plot(Summary[0], Summary[3])
+linear_1D_summary = perform_svm(X_train_linear_1D.reshape(-1, 1), y_train_linear_1D, X_test_linear_1D.reshape(-1, 1), y_test_linear_1D, max_iter=100)
+print(linear_1D_summary)
+print(linear_1D_summary[0])
+evaluation_figure_1D, eval_axs_1D = plt.subplots(3, 1)
+eval_axs_1D[0].plot(linear_1D_summary[0], linear_1D_summary[1])
+eval_axs_1D[1].plot(linear_1D_summary[0], linear_1D_summary[2])
+eval_axs_1D[2].plot(linear_1D_summary[0], linear_1D_summary[3])
+
+
+
+nonlinear_1D_summary = perform_svm(X_train_nonlinear_1D.reshape(-1, 1), y_train_nonlinear_1D, X_test_nonlinear_1D.reshape(-1, 1), y_test_nonlinear_1D, max_iter=100)
+evaluation_figure_nonlinear_1D, eval_axs_nonlinear_1D = plt.subplots(3, 1)
+eval_axs_nonlinear_1D[0].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[1])
+eval_axs_nonlinear_1D[1].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[2])
+eval_axs_nonlinear_1D[2].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[3])
 
 plt.show()
-
-
-perform_svm(X_train_nonlinear_1D.reshape(-1, 1), y_train_nonlinear_1D, X_test_nonlinear_1D.reshape(-1, 1), y_test_nonlinear_1D, max_iter=100)
