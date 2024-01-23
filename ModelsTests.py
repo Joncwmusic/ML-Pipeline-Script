@@ -30,9 +30,9 @@ y_test_linear_5D = [(3*x[0] + 4*x[1] + 2*x[3] +4)*(0.95+0.1*random.random()) for
 
 
 ### NonLinear Relationship 1D TestData
-X_train_nonlinear_1D = np.random.rand(90)
+X_train_nonlinear_1D = np.random.rand(90, 1)
 y_train_nonlinear_1D = [(3 * x ** 2 + x + 1)*(0.95+0.1*random.random()) for x in X_train_nonlinear_1D]
-X_test_nonlinear_1D = np.random.rand(10)
+X_test_nonlinear_1D = np.random.rand(10, 1)
 y_test_nonlinear_1D = [(3 * x ** 2 + x + 1)*(0.95+0.1*random.random()) for x in X_test_nonlinear_1D]
 
 ### NonLinear Relationship 2D Test Data (Planar Data)
@@ -64,7 +64,20 @@ axs[1,1].set_title('Linear Test Data 2D')
 axs[1,1].scatter(X_test_nonlinear_2D[:,0], X_test_nonlinear_2D[:,1], c = y_test_linear_2D, marker = 's')
 axs[1,1].set_title('Linear Test Data 2D')
 
+# print(X_train_linear_1D)
+# print(X_train_linear_1D.reshape(-1, 1))
+
+
+
+Summary = perform_svm(X_train_linear_1D.reshape(-1, 1), y_train_linear_1D, X_test_linear_1D.reshape(-1, 1), y_test_linear_1D, max_iter=100)
+print(Summary)
+print(Summary[0])
+evaluation_figure, eval_axs = plt.subplots(3, 1)
+eval_axs[0].plot(Summary[0], Summary[1])
+eval_axs[1].plot(Summary[0], Summary[2])
+eval_axs[2].plot(Summary[0], Summary[3])
 
 plt.show()
 
-perform_svm(X_train_linear_1D, y_train_linear_1D, X_test_linear_1D, y_test_linear_1D, max_iter=100)
+
+perform_svm(X_train_nonlinear_1D.reshape(-1, 1), y_train_nonlinear_1D, X_test_nonlinear_1D.reshape(-1, 1), y_test_nonlinear_1D, max_iter=100)
