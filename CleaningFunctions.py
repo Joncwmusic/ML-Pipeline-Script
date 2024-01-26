@@ -1,10 +1,11 @@
 import pandas as pd
 
-def cleanDF(df):
+def removenulls(df, handleNullNum = 'averages', handleNullCategory = 'Other'):
     '''
     :param df: unclean pandas dataframe
     :return: cleaned pandas dataframe
     '''
+
     return None
 def getTrainData(df, target, trainsplit = 0.7):
     '''

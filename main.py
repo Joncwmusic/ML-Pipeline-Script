@@ -1,10 +1,7 @@
-
-
-
-
-
-# Function to exchance text fields for dummy variables, normalize values to a fixed range,
-
+import CleaningFunctions
+import ModelsTests
+import pandas as pd
+import numpy as np
 
 
 if __name__ == '__main__':
