@@ -94,11 +94,9 @@ def perform_svm(X_train, y_train, X_test, y_test, max_iter=1000):
     r2_scores_train = [r2_linear_train, r2_poly2_train, r2_poly3_train, r2_sigmoid_train, r2_radial_train]
     rmse_scores_train = [RMSE_linear_train, RMSE_poly2_train, RMSE_poly3_train, RMSE_sigmoid_train, RMSE_radial_train]
     mae_scores_train = [MAE_linear_train, MAE_poly2_train, MAE_poly3_train, MAE_sigmoid_train, MAE_radial_train]
-
     r2_scores = [r2_linear, r2_poly2, r2_poly3, r2_sigmoid, r2_radial]
     rmse_scores = [RMSE_linear, RMSE_poly2, RMSE_poly3, RMSE_sigmoid, RMSE_radial]
     mae_scores = [MAE_linear, MAE_poly2, MAE_poly3, MAE_sigmoid, MAE_radial]
-    print('evaluation metrics have finished computing')
     print('evaluation metrics have finished computing')
 
     r2_scores_dict = dict(zip(labels, r2_scores))

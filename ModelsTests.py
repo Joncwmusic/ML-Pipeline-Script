@@ -60,31 +60,57 @@ axs[1,1].set_title('Linear Test Data 2D')
 # print(X_train_linear_1D.reshape(-1, 1))
 
 
-
+#plot the 1D case summary
 linear_1D_summary = perform_svm(X_train_linear_1D.reshape(-1, 1),
                                 y_train_linear_1D, X_test_linear_1D.reshape(-1, 1), y_test_linear_1D, max_iter=100)
-print(linear_1D_summary)
-print(linear_1D_summary[0])
 evaluation_figure_1D, eval_axs_1D = plt.subplots(3, 1)
-eval_axs_1D[0].plot(linear_1D_summary[0], linear_1D_summary[1], 'b-')
-eval_axs_1D[1].plot(linear_1D_summary[0], linear_1D_summary[2], 'b-')
-eval_axs_1D[2].plot(linear_1D_summary[0], linear_1D_summary[3], 'b-')
-eval_axs_1D[0].plot(linear_1D_summary[0], linear_1D_summary[4], 'r-')
-eval_axs_1D[1].plot(linear_1D_summary[0], linear_1D_summary[5], 'r-')
-eval_axs_1D[2].plot(linear_1D_summary[0], linear_1D_summary[6], 'r-')
+eval_axs_1D[0].bar(linear_1D_summary[0], linear_1D_summary[1])
+eval_axs_1D[1].bar(linear_1D_summary[0], linear_1D_summary[2])
+eval_axs_1D[2].bar(linear_1D_summary[0], linear_1D_summary[3])
+eval_axs_1D[0].bar(linear_1D_summary[0], linear_1D_summary[4])
+eval_axs_1D[1].bar(linear_1D_summary[0], linear_1D_summary[5])
+eval_axs_1D[2].bar(linear_1D_summary[0], linear_1D_summary[6])
 
 
 
-nonlinear_1D_summary = perform_svm(X_train_nonlinear_1D.reshape(-1, 1),
-                                   y_train_nonlinear_1D,
-                                   X_test_nonlinear_1D.reshape(-1, 1),
-                                   y_test_nonlinear_1D, max_iter=100)
-evaluation_figure_nonlinear_1D, eval_axs_nonlinear_1D = plt.subplots(3, 1)
-eval_axs_nonlinear_1D[0].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[1], 'b-')
-eval_axs_nonlinear_1D[1].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[2], 'b-')
-eval_axs_nonlinear_1D[2].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[3], 'b-')
-eval_axs_nonlinear_1D[0].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[4], 'r-')
-eval_axs_nonlinear_1D[1].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[5], 'r-')
-eval_axs_nonlinear_1D[2].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[6], 'r-')
+# nonlinear_1D_summary = perform_svm(X_train_nonlinear_1D.reshape(-1, 1),
+#                                    y_train_nonlinear_1D,
+#                                    X_test_nonlinear_1D.reshape(-1, 1),
+#                                    y_test_nonlinear_1D, max_iter=100)
+# evaluation_figure_nonlinear_1D, eval_axs_nonlinear_1D = plt.subplots(3, 1)
+# eval_axs_nonlinear_1D[0].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[1], 'b-')
+# eval_axs_nonlinear_1D[1].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[2], 'b-')
+# eval_axs_nonlinear_1D[2].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[3], 'b-')
+# eval_axs_nonlinear_1D[0].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[4], 'r-')
+# eval_axs_nonlinear_1D[1].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[5], 'r-')
+# eval_axs_nonlinear_1D[2].plot(nonlinear_1D_summary[0], nonlinear_1D_summary[6], 'r-')
+
+
+
+# linear_2D_summary = perform_svm(X_train_linear_2D,
+#                                 y_train_linear_2D, X_test_linear_2D, y_test_linear_2D, max_iter=100)
+# print(linear_2D_summary)
+# print(linear_2D_summary[0])
+# evaluation_figure_2D, eval_axs_2D = plt.subplots(3, 1)
+# eval_axs_2D[0].plot(linear_2D_summary[0], linear_2D_summary[1], 'b-')
+# eval_axs_2D[1].plot(linear_2D_summary[0], linear_2D_summary[2], 'b-')
+# eval_axs_2D[2].plot(linear_2D_summary[0], linear_2D_summary[3], 'b-')
+# eval_axs_2D[0].plot(linear_2D_summary[0], linear_2D_summary[4], 'r-')
+# eval_axs_2D[1].plot(linear_2D_summary[0], linear_2D_summary[5], 'r-')
+# eval_axs_2D[2].plot(linear_2D_summary[0], linear_2D_summary[6], 'r-')
+#
+#
+#
+# nonlinear_2D_summary = perform_svm(X_train_nonlinear_2D,
+#                                    y_train_nonlinear_2D,
+#                                    X_test_nonlinear_2D,
+#                                    y_test_nonlinear_2D, max_iter=100)
+# evaluation_figure_nonlinear_2D, eval_axs_nonlinear_2D = plt.subplots(3, 1)
+# eval_axs_nonlinear_2D[0].bar(nonlinear_2D_summary[0], nonlinear_2D_summary[1])
+# eval_axs_nonlinear_2D[1].bar(nonlinear_2D_summary[0], nonlinear_2D_summary[2])
+# eval_axs_nonlinear_2D[2].bar(nonlinear_2D_summary[0], nonlinear_2D_summary[3])
+# eval_axs_nonlinear_2D[0].bar(nonlinear_2D_summary[0], nonlinear_2D_summary[4])
+# eval_axs_nonlinear_2D[1].bar(nonlinear_2D_summary[0], nonlinear_2D_summary[5])
+# eval_axs_nonlinear_2D[2].bar(nonlinear_2D_summary[0], nonlinear_2D_summary[6])
 
 plt.show()
