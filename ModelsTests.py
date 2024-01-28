@@ -64,6 +64,7 @@ axs[1,1].set_title('Linear Test Data 2D')
 linear_1D_summary = perform_svm(X_train_linear_1D.reshape(-1, 1),
                                 y_train_linear_1D, X_test_linear_1D.reshape(-1, 1), y_test_linear_1D, max_iter=100)
 evaluation_figure_1D, eval_axs_1D = plt.subplots(3, 1)
+
 eval_axs_1D[0].bar(linear_1D_summary[0], linear_1D_summary[1])
 eval_axs_1D[1].bar(linear_1D_summary[0], linear_1D_summary[2])
 eval_axs_1D[2].bar(linear_1D_summary[0], linear_1D_summary[3])
