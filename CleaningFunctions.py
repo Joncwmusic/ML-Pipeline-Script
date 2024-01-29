@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from scipy.stats import shapiro, normaltest, anderson
+
+
 def replace_null_with_zero(df, columns):
     '''
     :param df: input pandas dataframe
@@ -121,6 +123,7 @@ def test_log_normalcy(series):
         return True
     else:
         return False
+
 
 def dedupe_data(df):
     new_df = df
