@@ -33,3 +33,14 @@ if __name__ == '__main__':
 
     if pd.api.types.is_string_dtype(input_data[target_column]):
         r_mod.perform_svm(X_train, X_test, y_train, y_test, max_iter=100)
+        r_mod.perform_linreg()
+
+        NN_Input = input('Would you also like to see the performance of neural networks? (Y/N):')
+        if NN_Input == 'Y':
+            print('Performing NN Regression')
+
+
+    # else:
+    #     c_mod.perform_svm(X_train, X_test, y_train, y_test, max_iter = 100)
+    #     c_mod.perform_rf()
+    #     c_mod.perform_
