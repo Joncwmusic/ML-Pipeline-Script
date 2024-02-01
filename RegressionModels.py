@@ -1,5 +1,4 @@
-from sklearn import linear_model
-from sklearn import svm
+from sklearn import linear_model, svm
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_absolute_error, root_mean_squared_error, r2_score
 ## Support Vector Regression
@@ -105,7 +104,7 @@ def perform_svm(X_train, y_train, X_test, y_test, max_iter=1000):
     return (labels, r2_scores, rmse_scores, mae_scores, r2_scores_train, rmse_scores_train, mae_scores_train)
 
 ## LinearRegression
-def perform_linreg(X_train, y_train, X_test, y_test, degree_1 = 2, degree_2 = 3):
+def perform_linreg(X_train, y_train, X_test, y_test, degree_1 = 2, degree_2 = 3, alpha = 1.0):
     '''
     :param X_train: Training set features
     :param y_train: Training set targets
@@ -121,6 +120,7 @@ def perform_linreg(X_train, y_train, X_test, y_test, degree_1 = 2, degree_2 = 3)
     first_poly_train.fit_transform(X_train)
     second_poly_train = PolynomialFeatures(degree = 3)
     second_poly_train.fit_transform(X_train)
+
     first_poly_test = PolynomialFeatures(degree=2)
     first_poly_test.fit_transform(X_test)
     second_poly_test = PolynomialFeatures(degree=3)
@@ -130,22 +130,66 @@ def perform_linreg(X_train, y_train, X_test, y_test, degree_1 = 2, degree_2 = 3)
     linreg_model = linear_model.LinearRegression()
     first_poly_model = linear_model.LinearRegression()
     second_poly_model = linear_model.LinearRegression()
+    ridge_model = linear_model.Ridge(alpha = alpha)
+    ridge_first_poly_model = linear_model.ridge(alpha = alpha)
+    ridge_second_poly_model = linear_model.ridge(alpha = alpha)
+    lasso_model = linear_model.Lasso(alpha = alpha)
+    lasso_first_poly_model = linear_model.lasso(alpha = alpha)
+    lasso_second_poly_model = linear_model.lasso(alpha = alpha)
 
-
-    print('Training Linear Models on Training Sets\n ...')
+    print('Training Regression Models on Training Sets\n ...')
     linreg_model.fit(X_train, y_train)
     first_poly_model.fit(first_poly_train, y_train)
     second_poly_model.fit(second_poly_train, y_train)
+    ridge_model.fit(X_train, y_train)
+    ridge_first_poly_model.fit(X_train, y_train)
+    ridge_second_poly_model.fit(X_train, y_train)
+    lasso_model.fit(X_train, y_train)
+    lasso_second_poly_model.fit(X_train, y_train)
+    lasso_second_poly_model.fit(X_train, y_train)
 
     linreg_predictions = linreg_model.predict(X_test)
     first_poly_predictions = first_poly_model.predict(first_poly_test)
     second_poly_predictions = second_poly_model.predict(second_poly_test)
+    ridge_predictions = ridge_model.predict(X_test)
+    ridge_first_poly_predictions = ridge_first_poly_model.predict(X_test)
+    ridge_second_poly_predictions = ridge_second_poly_model.predict(X_test)
+    lasso_predictions = lasso_model.predict(X_test)
+    lasso_first_poly_predictions = lasso_first_poly_model.predict(X_test)
+    lasso_second_poly_predictIons = lasso_second_poly_model.predict(X_test)
 
-    r2_score(linreg_predictions, y_test)
+    r2_linreg_train = r2_score(linreg_predictions, y_test)
+
+
+
+
     root_mean_squared_error(linreg_predictions, y_test)
     mean_absolute_error(linreg_predictions, y_test)
 
 ## RidgeRegression
-## LassoRegression
-## Decision Regression
-## Random Forest Regression
+def perform_ridge(X_train, y_train, X_test, y_test, degree_1 = 2, degree_2 = 3, alpha = 1):
+    '''
+    :param X_train: Training set features
+    :param y_train: Training set targets
+    :param X_test: Test set features
+    :param y_test: Test set targets
+    :param degree_1: Degree of first polynomial model
+    :param degree_2: Degree of second polynomial model
+    :return: tuple with summary of model performance
+    '''
+    return None
+
+
+# LassoRegression
+def perform_lasso():
+    return None
+
+
+#  Decision Regression
+def perform_tree():
+    return None
+
+
+# Random Forest Regression
+def perform_forest():
+    return None

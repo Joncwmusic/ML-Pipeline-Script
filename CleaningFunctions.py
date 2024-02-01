@@ -3,7 +3,6 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from scipy.stats import shapiro, normaltest, anderson
 
-
 def replace_null_with_zero(df, columns):
     '''
     :param df: input pandas dataframe
@@ -49,7 +48,6 @@ def split_train_test(df, target_column, test_size=0.2, random_state=42):
 
 def create_dummy_variables(df, columns):
     '''
-
     :param df: input pandas dataframe
     :param columns:
     :return:
