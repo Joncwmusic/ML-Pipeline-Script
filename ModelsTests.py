@@ -62,15 +62,17 @@ axs[1,1].set_title('Linear Test Data 2D')
 
 #plot the 1D case summary
 linear_1D_summary = perform_svm(X_train_linear_1D.reshape(-1, 1),
-                                y_train_linear_1D, X_test_linear_1D.reshape(-1, 1), y_test_linear_1D, max_iter=100)
+                                y_train_linear_1D, X_test_linear_1D.reshape(-1, 1), y_test_linear_1D, max_iter=1000)
 evaluation_figure_1D, eval_axs_1D = plt.subplots(3, 1)
+plt.xticks(rotation=90)
 
-eval_axs_1D[0].bar(linear_1D_summary[0], linear_1D_summary[1])
-eval_axs_1D[1].bar(linear_1D_summary[0], linear_1D_summary[2])
-eval_axs_1D[2].bar(linear_1D_summary[0], linear_1D_summary[3])
-eval_axs_1D[0].bar(linear_1D_summary[0], linear_1D_summary[4])
-eval_axs_1D[1].bar(linear_1D_summary[0], linear_1D_summary[5])
-eval_axs_1D[2].bar(linear_1D_summary[0], linear_1D_summary[6])
+
+eval_axs_1D[0].bar(linear_1D_summary[0].keys(), [i[0] for i in linear_1D_summary[0].values()])
+eval_axs_1D[1].bar(linear_1D_summary[0].keys(), [i[1] for i in linear_1D_summary[0].values()])
+eval_axs_1D[2].bar(linear_1D_summary[0].keys(), [i[2] for i in linear_1D_summary[0].values()])
+eval_axs_1D[0].bar(linear_1D_summary[1].keys(), [i[0] for i in linear_1D_summary[1].values()])
+eval_axs_1D[1].bar(linear_1D_summary[1].keys(), [i[1] for i in linear_1D_summary[1].values()])
+eval_axs_1D[2].bar(linear_1D_summary[1].keys(), [i[2] for i in linear_1D_summary[1].values()])
 
 
 
