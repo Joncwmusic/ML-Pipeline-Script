@@ -53,7 +53,7 @@ def create_dummy_variables(df, columns):
     :return:
     '''
     new_df = df
-    new_df = pd.get_dummies(new_df, columns=columns, drop_first=True)
+    new_df = pd.get_dummies(new_df, columns=columns, drop_first=True, dtype = 'int64')
     return new_df
 
 def normalize_values(df, columns):

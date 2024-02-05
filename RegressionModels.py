@@ -1,5 +1,6 @@
 import itertools
-from sklearn import linear_model, svm
+from sklearn import linear_model, svm, tree
+from sklearn.ensemble import RandomForestRegressor as rfr
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_absolute_error, root_mean_squared_error, r2_score
 ## Support Vector Regression
@@ -164,86 +165,90 @@ def perform_svm(X_train, y_train, X_test, y_test, max_iter=1000):
     # return (labels, r2_scores, rmse_scores, mae_scores, r2_scores_train, rmse_scores_train, mae_scores_train)
 
 ## LinearRegression
-def perform_linreg(X_train, y_train, X_test, y_test, degree_1 = 2, degree_2 = 3, alpha = 1.0):
+# def perform_linreg(X_train, y_train, X_test, y_test, degree_1 = 2, degree_2 = 3, alpha = 1.0):
+#     '''
+#     :param X_train: Training set features
+#     :param y_train: Training set targets
+#     :param X_test: Test set features
+#     :param y_test: Test set targets
+#     :param degree_1: Degree of first polynomial model
+#     :param degree_2: Degree of second polynomial model
+#     :return: tuple with summary of model performance
+#     '''
+#
+#     print('initializing polynomial feature sets for training and testing data')
+#     first_poly_train = PolynomialFeatures(degree = 2)
+#     first_poly_train.fit_transform(X_train)
+#     second_poly_train = PolynomialFeatures(degree = 3)
+#     second_poly_train.fit_transform(X_train)
+#
+#     first_poly_test = PolynomialFeatures(degree=2)
+#     first_poly_test.fit_transform(X_test)
+#     second_poly_test = PolynomialFeatures(degree=3)
+#     second_poly_test.fit_transform(X_test)
+#
+#     print('initializing linear models')
+#     linreg_model = linear_model.LinearRegression()
+#     first_poly_model = linear_model.LinearRegression()
+#     second_poly_model = linear_model.LinearRegression()
+#     ridge_model = linear_model.Ridge(alpha = alpha)
+#     ridge_first_poly_model = linear_model.ridge(alpha = alpha)
+#     ridge_second_poly_model = linear_model.ridge(alpha = alpha)
+#     lasso_model = linear_model.Lasso(alpha = alpha)
+#     lasso_first_poly_model = linear_model.lasso(alpha = alpha)
+#     lasso_second_poly_model = linear_model.lasso(alpha = alpha)
+#
+#     print('Training Regression Models on Training Sets\n ...')
+#     linreg_model.fit(X_train, y_train)
+#     first_poly_model.fit(first_poly_train, y_train)
+#     second_poly_model.fit(second_poly_train, y_train)
+#     ridge_model.fit(X_train, y_train)
+#     ridge_first_poly_model.fit(X_train, y_train)
+#     ridge_second_poly_model.fit(X_train, y_train)
+#     lasso_model.fit(X_train, y_train)
+#     lasso_second_poly_model.fit(X_train, y_train)
+#     lasso_second_poly_model.fit(X_train, y_train)
+#
+#     linreg_predictions = linreg_model.predict(X_test)
+#     first_poly_predictions = first_poly_model.predict(first_poly_test)
+#     second_poly_predictions = second_poly_model.predict(second_poly_test)
+#     ridge_predictions = ridge_model.predict(X_test)
+#     ridge_first_poly_predictions = ridge_first_poly_model.predict(X_test)
+#     ridge_second_poly_predictions = ridge_second_poly_model.predict(X_test)
+#     lasso_predictions = lasso_model.predict(X_test)
+#     lasso_first_poly_predictions = lasso_first_poly_model.predict(X_test)
+#     lasso_second_poly_predictIons = lasso_second_poly_model.predict(X_test)
+#
+#
+#     r2_linreg_train = r2_score(linreg_predictions, y_test)
+#
+#
+#     root_mean_squared_error(linreg_predictions, y_test)
+#     mean_absolute_error(linreg_predictions, y_test)
+
+## LinearRegression
+def perform_linear(X_train, y_train, X_test, y_test):
     '''
     :param X_train: Training set features
     :param y_train: Training set targets
     :param X_test: Test set features
     :param y_test: Test set targets
-    :param degree_1: Degree of first polynomial model
-    :param degree_2: Degree of second polynomial model
     :return: tuple with summary of model performance
     '''
 
-    print('initializing polynomial feature sets for training and testing data')
-    first_poly_train = PolynomialFeatures(degree = 2)
-    first_poly_train.fit_transform(X_train)
-    second_poly_train = PolynomialFeatures(degree = 3)
-    second_poly_train.fit_transform(X_train)
-
-    first_poly_test = PolynomialFeatures(degree=2)
-    first_poly_test.fit_transform(X_test)
-    second_poly_test = PolynomialFeatures(degree=3)
-    second_poly_test.fit_transform(X_test)
-
-    print('initializing linear models')
-    linreg_model = linear_model.LinearRegression()
-    first_poly_model = linear_model.LinearRegression()
-    second_poly_model = linear_model.LinearRegression()
-    ridge_model = linear_model.Ridge(alpha = alpha)
-    ridge_first_poly_model = linear_model.ridge(alpha = alpha)
-    ridge_second_poly_model = linear_model.ridge(alpha = alpha)
-    lasso_model = linear_model.Lasso(alpha = alpha)
-    lasso_first_poly_model = linear_model.lasso(alpha = alpha)
-    lasso_second_poly_model = linear_model.lasso(alpha = alpha)
-
-    print('Training Regression Models on Training Sets\n ...')
-    linreg_model.fit(X_train, y_train)
-    first_poly_model.fit(first_poly_train, y_train)
-    second_poly_model.fit(second_poly_train, y_train)
-    ridge_model.fit(X_train, y_train)
-    ridge_first_poly_model.fit(X_train, y_train)
-    ridge_second_poly_model.fit(X_train, y_train)
-    lasso_model.fit(X_train, y_train)
-    lasso_second_poly_model.fit(X_train, y_train)
-    lasso_second_poly_model.fit(X_train, y_train)
-
-    linreg_predictions = linreg_model.predict(X_test)
-    first_poly_predictions = first_poly_model.predict(first_poly_test)
-    second_poly_predictions = second_poly_model.predict(second_poly_test)
-    ridge_predictions = ridge_model.predict(X_test)
-    ridge_first_poly_predictions = ridge_first_poly_model.predict(X_test)
-    ridge_second_poly_predictions = ridge_second_poly_model.predict(X_test)
-    lasso_predictions = lasso_model.predict(X_test)
-    lasso_first_poly_predictions = lasso_first_poly_model.predict(X_test)
-    lasso_second_poly_predictIons = lasso_second_poly_model.predict(X_test)
-
-
-    r2_linreg_train = r2_score(linreg_predictions, y_test)
-
-
-    root_mean_squared_error(linreg_predictions, y_test)
-    mean_absolute_error(linreg_predictions, y_test)
-
-## RidgeRegression
-def perform_linear(X_train, y_train, X_test, y_test, alpha = 1):
-    '''
-    :param X_train: Training set features
-    :param y_train: Training set targets
-    :param X_test: Test set features
-    :param y_test: Test set targets
-    :return: tuple with summary of model performance
-    '''
+    polynomial_training_sets = []
 
     poly_train_deg2 = PolynomialFeatures(degree=2)
-    poly_train_deg2.fit_transform(X_train)
-    poly_train_deg3 = PolynomialFeatures(degree=3)
-    poly_train_deg3.fit_transform(X_train)
-
+    X_train_deg2 = poly_train_deg2.fit_transform(X_train)
     poly_test_deg2 = PolynomialFeatures(degree=2)
-    poly_test_deg2.fit_transform(X_test)
+    X_test_deg2 = poly_test_deg2.fit_transform(X_test)
+
+    poly_train_deg3 = PolynomialFeatures(degree=3)
+    X_train_deg3 = poly_train_deg3.fit_transform(X_train)
     poly_test_deg3 = PolynomialFeatures(degree=3)
-    poly_test_deg3.fit_transform(X_test)
+    X_test_deg3 = poly_test_deg3.fit_transform(X_test)
+
+    print(X_train_deg2, X_test_deg2)
 
     linear_model_types = ['vanilla', 'ridge', 'lasso']
     linear_hyperparam_degrees = [1, 2, 3]
@@ -251,65 +256,87 @@ def perform_linear(X_train, y_train, X_test, y_test, alpha = 1):
     linear_model_names = []
     linear_models = []
 
-    for mod, deg in itertools.product(linear_model_types, linear_hyperparam_alpha, linear_hyperparam_degrees):
-        if mod == 'vanilla':
-            linear_model_names.append(mod + '_' + str(deg))
+    for alpha, deg in itertools.product(linear_hyperparam_alpha, linear_hyperparam_degrees):
+        linear_model_names.append('ridge_' + str(alpha) + '_deg' + str(deg))
+        if deg == 1:
+            linear_models.append(linear_model.Ridge(alpha=alpha).fit(X_train, y_train))
+        elif deg == 2:
+            linear_models.append(linear_model.Ridge(alpha=alpha).fit(X_train_deg2, y_train))
+        elif deg == 3:
+            linear_models.append(linear_model.Ridge(alpha=alpha).fit(X_train_deg3, y_train))
 
+        linear_model_names.append('lasso_' + str(alpha) + '_deg' + str(deg))
+        if deg == 1:
+            linear_models.append(linear_model.Lasso(alpha=alpha).fit(X_train, y_train))
+        elif deg == 2:
+            linear_models.append(linear_model.Lasso(alpha=alpha).fit(X_train_deg2, y_train))
+        elif deg == 3:
+            linear_models.append(linear_model.Lasso(alpha=alpha).fit(X_train_deg3, y_train))
 
-    print(svm_model_names)
+    for deg in linear_hyperparam_degrees:
+        linear_model_names.append('vanilla_deg' + str(deg))
+        if deg == 1:
+            linear_models.append(linear_model.LinearRegression().fit(X_train, y_train))
+        if deg == 2:
+            linear_models.append(linear_model.LinearRegression().fit(X_train_deg2, y_train))
+        if deg == 3:
+            linear_models.append(linear_model.LinearRegression().fit(X_train_deg3, y_train))
 
-    svm_models_dict = dict(zip(svm_model_names, svm_models))
+    print(linear_model_names)
+    linear_models_dict = dict(zip(linear_model_names, linear_models))
 
-    print(svm_models_dict)
+    print(linear_models_dict)
 
-    # fit all the models to the training data
-    for model_key in svm_models_dict:
-        svm_models_dict[model_key].fit(X_train, y_train)
+    # # fit all the models to the training data
+    # for model_key in linear_models_dict:
+    #     linear_models_dict[model_key].fit(X_train, y_train)
 
     # predict both test and training sets to see over fitting or under fitting
-    svm_predictions_train_dict = {}
-    svm_predictions_test_dict = {}
+    linear_predictions_train_dict = {}
+    linear_predictions_test_dict = {}
 
+    for model_key in linear_models_dict:
+        bool_val = ('deg1' in model_key)
+        print(model_key, bool_val)
+        if 'deg1' in model_key:
+            linear_predictions_train_dict[model_key] = linear_models_dict[model_key].predict(X_train)
+            linear_predictions_test_dict[model_key] = linear_models_dict[model_key].predict(X_test)
+        elif 'deg2' in model_key:
+            linear_predictions_train_dict[model_key] = linear_models_dict[model_key].predict(X_train_deg2)
+            linear_predictions_test_dict[model_key] = linear_models_dict[model_key].predict(X_test_deg2)
+        elif 'deg3' in model_key:
+            linear_predictions_train_dict[model_key] = linear_models_dict[model_key].predict(X_train_deg3)
+            linear_predictions_test_dict[model_key] = linear_models_dict[model_key].predict(X_test_deg3)
 
-    for model_key in svm_models_dict:
-        svm_predictions_train_dict[model_key] = svm_models_dict[model_key].predict(X_train)
-        svm_predictions_test_dict[model_key] = svm_models_dict[model_key].predict(X_test)
+    print(linear_predictions_train_dict)
+    print(linear_predictions_test_dict)
 
-    print(svm_predictions_train_dict)
-    print(svm_predictions_test_dict)
+    linear_train_evaluation_dict = {}
+    linear_test_evaluation_dict = {}
 
-    svm_train_evaluation_dict = {}
-    svm_test_evaluation_dict = {}
+    for prediction in linear_predictions_train_dict:
+        linear_train_evaluation_dict[prediction] = [r2_score(y_train, linear_predictions_train_dict[prediction])]
+        linear_train_evaluation_dict[prediction].append(mean_absolute_error(y_train, linear_predictions_train_dict[prediction]))
+        linear_train_evaluation_dict[prediction].append(root_mean_squared_error(y_train, linear_predictions_train_dict[prediction]))
 
-    for prediction in svm_predictions_train_dict:
-        svm_train_evaluation_dict[prediction] = [r2_score(svm_predictions_train_dict[prediction], y_train)]
-        svm_train_evaluation_dict[prediction].append(mean_absolute_error(svm_predictions_train_dict[prediction], y_train))
-        svm_train_evaluation_dict[prediction].append(root_mean_squared_error(svm_predictions_train_dict[prediction], y_train))
+    for prediction in linear_predictions_test_dict:
+        linear_test_evaluation_dict[prediction] = [r2_score(y_test, linear_predictions_test_dict[prediction])]
+        linear_test_evaluation_dict[prediction].append(mean_absolute_error(y_test, linear_predictions_test_dict[prediction]))
+        linear_test_evaluation_dict[prediction].append(root_mean_squared_error(y_test, linear_predictions_test_dict[prediction]))
 
-    for prediction in svm_predictions_test_dict:
-        svm_test_evaluation_dict[prediction] = [r2_score(svm_predictions_test_dict[prediction], y_test)]
-        svm_test_evaluation_dict[prediction].append(mean_absolute_error(svm_predictions_test_dict[prediction], y_test))
-        svm_test_evaluation_dict[prediction].append(root_mean_squared_error(svm_predictions_test_dict[prediction], y_test))
-
-    print(svm_train_evaluation_dict)
-    print(svm_test_evaluation_dict)
+    print(linear_train_evaluation_dict)
+    print(linear_test_evaluation_dict)
 
     print('evaluation metrics have finished computing')
-    return [svm_train_evaluation_dict, svm_test_evaluation_dict]
+    return [linear_train_evaluation_dict, linear_test_evaluation_dict]
 
-    return None
-
-
-# LassoRegression
-def perform_lasso():
-    return None
-
-
-#  Decision Regression
-def perform_tree():
-    return None
-
-
-# Random Forest Regression
-def perform_forest():
-    return None
+# #  Decision Regression
+# def perform_tree():
+#     hyperparam_max_depth = [2, 3, 5, 8, 13, 21]
+#
+#     return None
+#
+#
+# # Random Forest Regression
+# def perform_forest():
+#     return None

@@ -1,4 +1,4 @@
-from RegressionModels import perform_svm
+from RegressionModels import perform_svm, perform_linear
 import random
 import numpy as np
 import matplotlib.pyplot as plt
@@ -61,18 +61,41 @@ axs[1,1].set_title('Linear Test Data 2D')
 
 
 #plot the 1D case summary
-linear_1D_summary = perform_svm(X_train_linear_1D.reshape(-1, 1),
-                                y_train_linear_1D, X_test_linear_1D.reshape(-1, 1), y_test_linear_1D, max_iter=1000)
+# svm_1D_summary = perform_svm(X_train_linear_1D.reshape(-1, 1),
+#                                 y_train_linear_1D, X_test_linear_1D.reshape(-1, 1), y_test_linear_1D, max_iter=100)
+# svm_evaluation_figure_1D, svm_eval_axs_1D = plt.subplots(3, 1)
+#
+# svm_evaluation_figure_1D.tight_layout(pad = 5)
+#
+# svm_eval_axs_1D[0].set_xticklabels(svm_1D_summary[0].keys(), rotation = 40)
+# svm_eval_axs_1D[1].set_xticklabels(svm_1D_summary[0].keys(), rotation = 40)
+# svm_eval_axs_1D[2].set_xticklabels(svm_1D_summary[0].keys(), rotation = 40)
+#
+# svm_eval_axs_1D[0].bar(svm_1D_summary[0].keys(), [i[0] for i in svm_1D_summary[0].values()], width = -0.25, align = 'edge')
+# svm_eval_axs_1D[1].bar(svm_1D_summary[0].keys(), [i[1] for i in svm_1D_summary[0].values()], width = -0.25, align = 'edge')
+# svm_eval_axs_1D[2].bar(svm_1D_summary[0].keys(), [i[2] for i in svm_1D_summary[0].values()], width = -0.25, align = 'edge')
+# svm_eval_axs_1D[0].bar(svm_1D_summary[1].keys(), [i[0] for i in svm_1D_summary[1].values()], width = 0.25, align = 'edge')
+# svm_eval_axs_1D[1].bar(svm_1D_summary[1].keys(), [i[1] for i in svm_1D_summary[1].values()], width = 0.25, align = 'edge')
+# svm_eval_axs_1D[2].bar(svm_1D_summary[1].keys(), [i[2] for i in svm_1D_summary[1].values()], width = 0.25, align = 'edge')
+
+
+#plot the 1D case summary for linear
+linear_1D_summary = perform_linear(X_train_linear_1D.reshape(-1, 1),
+                                y_train_linear_1D, X_test_linear_1D.reshape(-1, 1), y_test_linear_1D)
 evaluation_figure_1D, eval_axs_1D = plt.subplots(3, 1)
-plt.xticks(rotation=90)
 
+evaluation_figure_1D.tight_layout(pad = 5)
 
-eval_axs_1D[0].bar(linear_1D_summary[0].keys(), [i[0] for i in linear_1D_summary[0].values()])
-eval_axs_1D[1].bar(linear_1D_summary[0].keys(), [i[1] for i in linear_1D_summary[0].values()])
-eval_axs_1D[2].bar(linear_1D_summary[0].keys(), [i[2] for i in linear_1D_summary[0].values()])
-eval_axs_1D[0].bar(linear_1D_summary[1].keys(), [i[0] for i in linear_1D_summary[1].values()])
-eval_axs_1D[1].bar(linear_1D_summary[1].keys(), [i[1] for i in linear_1D_summary[1].values()])
-eval_axs_1D[2].bar(linear_1D_summary[1].keys(), [i[2] for i in linear_1D_summary[1].values()])
+eval_axs_1D[0].set_xticklabels(linear_1D_summary[0].keys(), rotation = 40)
+eval_axs_1D[1].set_xticklabels(linear_1D_summary[0].keys(), rotation = 40)
+eval_axs_1D[2].set_xticklabels(linear_1D_summary[0].keys(), rotation = 40)
+
+eval_axs_1D[0].bar(linear_1D_summary[0].keys(), [i[0] for i in linear_1D_summary[0].values()], width = -0.25, align = 'edge')
+eval_axs_1D[1].bar(linear_1D_summary[0].keys(), [i[1] for i in linear_1D_summary[0].values()], width = -0.25, align = 'edge')
+eval_axs_1D[2].bar(linear_1D_summary[0].keys(), [i[2] for i in linear_1D_summary[0].values()], width = -0.25, align = 'edge')
+eval_axs_1D[0].bar(linear_1D_summary[1].keys(), [i[0] for i in linear_1D_summary[1].values()], width = 0.25, align = 'edge')
+eval_axs_1D[1].bar(linear_1D_summary[1].keys(), [i[1] for i in linear_1D_summary[1].values()], width = 0.25, align = 'edge')
+eval_axs_1D[2].bar(linear_1D_summary[1].keys(), [i[2] for i in linear_1D_summary[1].values()], width = 0.25, align = 'edge')
 
 
 
